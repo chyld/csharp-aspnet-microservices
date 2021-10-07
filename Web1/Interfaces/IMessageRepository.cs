@@ -6,6 +6,7 @@ namespace Web1
 {
   public interface IMessageRepository
   {
-    Task<IEnumerable<string>> GetAllUsernamesAsync();
+    Task<Message> SendMessageAsync(string username, MessageDto messageDto);
+    Task<IEnumerable<dynamic>> GetMessagesAsync(string username);
   }
 }

@@ -19,12 +19,21 @@ namespace Web1
       _repository = repository;
     }
 
-    //  GET http://localhost:5001/api/messages/usernames
-    [HttpGet("usernames")]
-    public async Task<IActionResult> GetAllUsernames()
+    //  POST http://localhost:5001/api/messages/sara
+    [HttpPost("{username}")]
+    public async Task<IActionResult> SendMessage(string username, MessageDto messageDto)
     {
-      var usernames = await _repository.GetAllUsernamesAsync();
-      return Ok(usernames);
+      var message = await _repository.SendMessageAsync(username, messageDto);
+      if (message is null) return NotFound();
+      return Ok(message);
+    }
+
+    //  GET http://localhost:5001/api/messages/sara
+    [HttpGet("{username}")]
+    public async Task<IActionResult> GetMessages(string username)
+    {
+      var messages = await _repository.GetMessagesAsync(username);
+      return Ok(messages);
     }
   }
 }

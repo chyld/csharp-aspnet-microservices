@@ -24,7 +24,7 @@ namespace Web2
     public async Task<IActionResult> Create(UserDto userDto)
     {
       var user = await _repository.CreateAsync(userDto);
-      return Ok(user);
+      return CreatedAtAction("GetById", new { user.Id }, user);
     }
 
     //  GET http://localhost:5002/api/users

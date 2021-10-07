@@ -25,7 +25,7 @@ namespace Web1
     {
       var message = await _repository.SendMessageAsync(username, messageDto);
       if (message is null) return NotFound();
-      return Ok(message);
+      return CreatedAtAction("GetMessages", new { username }, message);
     }
 
     //  GET http://localhost:5001/api/messages/sara

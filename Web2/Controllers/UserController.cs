@@ -5,12 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Text.Json;
 
-
 namespace Web2
 {
 
   [ApiController]
-  [Route("users")]
+  [Route("api/users")]
   public class UserController : ControllerBase
   {
     private IUserRepository _repository;
@@ -20,6 +19,7 @@ namespace Web2
       _repository = repository;
     }
 
+    //  POST http://localhost:5002/api/users
     [HttpPost]
     public async Task<IActionResult> Create(UserDto userDto)
     {
@@ -27,7 +27,7 @@ namespace Web2
       return Ok(user);
     }
 
-    //  POST http://localhost:5002/users
+    //  GET http://localhost:5002/api/users
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
@@ -35,7 +35,7 @@ namespace Web2
       return Ok(users);
     }
 
-    //  GET http://localhost:5002/users/3
+    //  GET http://localhost:5002/api/users/3
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
@@ -44,7 +44,7 @@ namespace Web2
       return Ok(user);
     }
 
-    //  GET http://localhost:5002/users/search?username=sara
+    //  GET http://localhost:5002/api/users/search?username=sara
     [HttpGet("search")]
     public async Task<IActionResult> GetByUsername([FromQuery] string username)
     {

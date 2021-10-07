@@ -27,6 +27,7 @@ namespace Web2
       return Ok(user);
     }
 
+    //  POST http://localhost:5002/users
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
@@ -34,10 +35,20 @@ namespace Web2
       return Ok(users);
     }
 
+    //  GET http://localhost:5002/users/3
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
       var user = await _repository.GetByIdAsync(id);
+      if (user is null) return NotFound();
+      return Ok(user);
+    }
+
+    //  GET http://localhost:5002/users/search?username=sara
+    [HttpGet("search")]
+    public async Task<IActionResult> GetByUsername([FromQuery] string username)
+    {
+      var user = await _repository.GetByUsernameAsync(username);
       if (user is null) return NotFound();
       return Ok(user);
     }

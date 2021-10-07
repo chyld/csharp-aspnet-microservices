@@ -17,7 +17,8 @@ namespace Web2
 
     public async Task<User> CreateAsync(UserDto userDto)
     {
-      var user = new User() { Username = userDto.Username };
+      string microGuid = String.Join("", Guid.NewGuid().ToString().Take(8));
+      var user = new User() { Username = $"{userDto.Username}-{microGuid}" };
       await _db.AddAsync(user);
       await _db.SaveChangesAsync();
       return user;
@@ -31,6 +32,11 @@ namespace Web2
     public async Task<User> GetByIdAsync(int id)
     {
       return await _db.Users.Where(u => u.Id == id).SingleOrDefaultAsync();
+    }
+
+    public async Task<User> GetByUsernameAsync(string username)
+    {
+      return await _db.Users.Where(u => u.Username == username).SingleOrDefaultAsync();
     }
   }
 }

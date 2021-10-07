@@ -9,5 +9,6 @@ namespace Web2
     Task<User> CreateAsync(UserDto userDto);
     Task<IEnumerable<User>> GetAllAsync();
     Task<User> GetByIdAsync(int id);
+    Task<User> GetByUsernameAsync(string username);
   }
 }

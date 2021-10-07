@@ -29,14 +29,14 @@ dotnet add package FluentAssertions
 cd Web1
 dotnet add reference ../Lib/Lib.csproj
 dotnet add package Microsoft.Extensions.Logging.Console
-dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet add package Microsoft.EntityFrameworkCore
 
 cd Web2
 dotnet add reference ../Lib/Lib.csproj
 dotnet add package Microsoft.Extensions.Logging.Console
-dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet add package Microsoft.EntityFrameworkCore
 
